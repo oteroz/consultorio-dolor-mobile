@@ -19,38 +19,58 @@ export default function PatientsTable({ patients, loading, query }) {
     );
   }
   return (
-    <table className="w-full">
-      <thead className="bg-slate-50 text-xs uppercase text-slate-600 tracking-wider">
-        <tr>
-          <th className="text-left px-5 py-3 font-semibold">Paciente</th>
-          <th className="text-left px-5 py-3 font-semibold">Direccion</th>
-          <th className="text-left px-5 py-3 font-semibold">Referido</th>
-          <th className="w-12"></th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-slate-100">
+    <>
+      <div className="md:hidden divide-y divide-slate-100">
         {patients.map(p => (
-          <tr key={p.id} className="group hover:bg-slate-50 transition">
-            <td className="px-5 py-3">
-              <Link to={`/pacientes/${p.id}`} className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
-                  {(p.nombre[0] + (p.apellido[0] || '')).toUpperCase()}
-                </div>
-                <div className="min-w-0">
-                  <div className="font-medium text-slate-900 truncate">{p.apellido}, {p.nombre}</div>
-                </div>
-              </Link>
-            </td>
-            <td className="px-5 py-3 text-slate-600 text-sm max-w-md truncate">{p.direccion || '-'}</td>
-            <td className="px-5 py-3 text-slate-600 text-sm">{p.referente_nombre || '-'}</td>
-            <td className="px-5 py-3 text-right pr-5">
-              <Link to={`/pacientes/${p.id}`} className="inline-flex items-center text-slate-400 group-hover:text-brand-600 transition">
-                <ChevronRight size={18} />
-              </Link>
-            </td>
-          </tr>
+          <Link key={p.id} to={`/pacientes/${p.id}`} className="flex items-start gap-3 p-4 active:bg-slate-50">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
+              {(p.nombre[0] + (p.apellido[0] || '')).toUpperCase()}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="font-medium text-slate-900 truncate">{p.apellido}, {p.nombre}</div>
+              <div className="text-sm text-slate-500 truncate">{p.direccion || 'Sin direccion registrada'}</div>
+              {p.referente_nombre && (
+                <div className="text-xs text-slate-400 mt-1 truncate">Referido: {p.referente_nombre}</div>
+              )}
+            </div>
+            <ChevronRight size={18} className="text-slate-400 mt-2 shrink-0" />
+          </Link>
         ))}
-      </tbody>
-    </table>
+      </div>
+
+      <table className="hidden md:table w-full">
+        <thead className="bg-slate-50 text-xs uppercase text-slate-600 tracking-wider">
+          <tr>
+            <th className="text-left px-5 py-3 font-semibold">Paciente</th>
+            <th className="text-left px-5 py-3 font-semibold">Direccion</th>
+            <th className="text-left px-5 py-3 font-semibold">Referido</th>
+            <th className="w-12"></th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-100">
+          {patients.map(p => (
+            <tr key={p.id} className="group hover:bg-slate-50 transition">
+              <td className="px-5 py-3">
+                <Link to={`/pacientes/${p.id}`} className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-white flex items-center justify-center text-sm font-semibold shrink-0">
+                    {(p.nombre[0] + (p.apellido[0] || '')).toUpperCase()}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-medium text-slate-900 truncate">{p.apellido}, {p.nombre}</div>
+                  </div>
+                </Link>
+              </td>
+              <td className="px-5 py-3 text-slate-600 text-sm max-w-md truncate">{p.direccion || '-'}</td>
+              <td className="px-5 py-3 text-slate-600 text-sm">{p.referente_nombre || '-'}</td>
+              <td className="px-5 py-3 text-right pr-5">
+                <Link to={`/pacientes/${p.id}`} className="inline-flex items-center text-slate-400 group-hover:text-brand-600 transition">
+                  <ChevronRight size={18} />
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

@@ -1,6 +1,6 @@
-# Consultorio de Dolor
+# Consultorio Dolor Mobile
 
-Aplicacion web para gestion de un consultorio de terapia del dolor.
+Aplicacion web enfocada en dispositivos moviles para gestion de un consultorio de terapia del dolor.
 
 ## Estado
 
@@ -10,7 +10,7 @@ La aplicacion funciona como frontend puro con Firebase:
 - Base de datos externa: Firestore.
 - Autenticacion: Firebase Auth.
 
-El objetivo es publicar en GitHub Pages con React hablando directamente con Firebase.
+El objetivo es publicar en GitHub Pages como una experiencia mobile-first con React hablando directamente con Firebase.
 
 ## Desarrollo Local
 

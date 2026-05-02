@@ -30,6 +30,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, select, textarea, button {
+  font: inherit;
+}
+
+input, select, textarea {
+  font-size: 16px;
+}
+
 /* Scrollbar sutil */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -91,4 +103,42 @@ button, a {
   body, main { background: white !important; }
   main { overflow: visible !important; }
   @page { margin: 1.5cm; }
+}
+
+@media screen and (max-width: 767px) {
+  .p-8 { padding: 1rem; }
+  .p-6 { padding: 1rem; }
+  .p-5 { padding: 1rem; }
+  .p-12 { padding: 2rem 1rem; }
+  .mb-8 { margin-bottom: 1.25rem; }
+  .mb-6 { margin-bottom: 1rem; }
+  .gap-6 { gap: 1rem; }
+  .gap-4 { gap: 0.75rem; }
+  .rounded-2xl { border-radius: 0.75rem; }
+
+  h1.text-3xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  h1.text-2xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  a, button, input, select, textarea {
+    touch-action: manipulation;
+  }
+
+  button, [role="button"], a {
+    min-height: 40px;
+  }
+
+  input, select, textarea {
+    min-height: 44px;
+  }
+
+  .sticky.bottom-4 {
+    bottom: calc(env(safe-area-inset-bottom) + 5.5rem);
+  }
 }

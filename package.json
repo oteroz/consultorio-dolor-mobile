@@ -1,8 +1,8 @@
 {
-  "name": "consultorio-dolor",
+  "name": "consultorio-dolor-mobile",
   "version": "0.1.0",
   "private": true,
-  "description": "App web local para consultorio de terapia del dolor",
+  "description": "App web movil para consultorio de terapia del dolor",
   "workspaces": [
     "frontend"
   ],

@@ -18,7 +18,7 @@ export default function CuentaTab({ patientId }) {
   return (
     <div>
       <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card mb-6">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Facturado</div>
             <div className="text-2xl font-semibold text-slate-900 tabular-nums mt-1">{fmt(summary.total_facturado)}</div>
@@ -34,7 +34,7 @@ export default function CuentaTab({ patientId }) {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-center mb-3 gap-2">
         <h2 className="text-lg font-semibold text-slate-900">Presupuestos</h2>
         <Link to={`/finanzas/presupuesto/nuevo?patient=${patientId}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">
           <Plus size={16} /> Presupuesto
@@ -63,7 +63,7 @@ export default function CuentaTab({ patientId }) {
         </ul>
       )}
 
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-center mb-3 gap-2">
         <h2 className="text-lg font-semibold text-slate-900">Facturas</h2>
         <Link to={`/finanzas/factura/nueva?patient=${patientId}`} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">
           <Plus size={16} /> Factura

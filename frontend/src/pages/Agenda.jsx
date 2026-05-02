@@ -84,9 +84,9 @@ export default function Agenda() {
 
   return (
     <div className="p-8 max-w-7xl">
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+      <div className="flex items-start justify-between mb-6 flex-col sm:flex-row sm:items-center gap-3">
         <h1 className="text-3xl font-semibold text-slate-900">Agenda</h1>
-        <div className="flex gap-1 p-1 bg-slate-100 rounded-lg">
+        <div className="grid grid-cols-3 w-full sm:w-auto gap-1 p-1 bg-slate-100 rounded-lg">
           <ModeButton active={mode === 'dia'} onClick={() => setMode('dia')}>Día</ModeButton>
           <ModeButton active={mode === 'semana'} onClick={() => setMode('semana')}>Semana</ModeButton>
           <ModeButton active={mode === 'mes'} onClick={() => setMode('mes')}>Mes</ModeButton>
@@ -95,7 +95,7 @@ export default function Agenda() {
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3">
-          <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+          <div className="flex items-stretch sm:items-center justify-between gap-3 mb-4 flex-col sm:flex-row">
             <div className="flex items-center gap-2 flex-wrap">
               <button onClick={goPrev} aria-label="Anterior" className="p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200">
                 <ChevronLeft size={16} />
@@ -108,7 +108,7 @@ export default function Agenda() {
               </button>
               <span className="text-sm font-semibold text-slate-700 capitalize ml-2">{titulo}</span>
             </div>
-            <button onClick={() => openNewCita()} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium shadow-sm">
+            <button onClick={() => openNewCita()} className="inline-flex justify-center items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium shadow-sm">
               <Plus size={16} /> Nueva cita
             </button>
           </div>

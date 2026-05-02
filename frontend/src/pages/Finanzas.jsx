@@ -24,16 +24,16 @@ export default function Finanzas() {
 
   return (
     <div className="p-8 max-w-6xl">
-      <div className="flex justify-between items-center mb-6 flex-wrap gap-3">
+      <div className="flex justify-between items-start mb-6 flex-col sm:flex-row sm:items-center gap-3">
         <div>
           <h1 className="text-3xl font-semibold text-slate-900">Finanzas</h1>
           <p className="text-sm text-slate-500 mt-1">Presupuestos, facturas, pagos y cobros</p>
         </div>
-        <div className="flex gap-2">
-          <Link to="/finanzas/presupuesto/nuevo" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">
+        <div className="grid grid-cols-2 sm:flex gap-2 w-full sm:w-auto">
+          <Link to="/finanzas/presupuesto/nuevo" className="inline-flex justify-center items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">
             <Plus size={16} /> Presupuesto
           </Link>
-          <Link to="/finanzas/factura/nueva" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium shadow-sm">
+          <Link to="/finanzas/factura/nueva" className="inline-flex justify-center items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium shadow-sm">
             <Plus size={16} /> Factura
           </Link>
         </div>
