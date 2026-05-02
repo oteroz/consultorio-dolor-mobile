@@ -71,6 +71,20 @@ export default function InvoiceDetail() {
       </tr>
     </>
   );
+  const mobileBalanceRows = (
+    <>
+      <div className="flex justify-between gap-3 border-t border-slate-200 pt-3">
+        <span className="text-slate-600">Pagado</span>
+        <span className="tabular-nums text-emerald-700">{fmt(invoice.pagado)}</span>
+      </div>
+      <div className="flex justify-between gap-3">
+        <span className="font-semibold text-slate-900">Balance</span>
+        <span className={`tabular-nums font-semibold ${balance > 0 ? 'text-rose-700' : 'text-slate-500'}`}>
+          {isAnulada ? '-' : fmt(balance)}
+        </span>
+      </div>
+    </>
+  );
 
   return (
     <div className="p-8 max-w-5xl">
@@ -79,20 +93,20 @@ export default function InvoiceDetail() {
           <ArrowLeft size={14} /> Volver a Finanzas
         </Link>
         <div className="flex justify-between items-start gap-4 flex-wrap mt-2">
-          <div>
+          <div className="min-w-0">
             <h1 className="text-2xl font-semibold text-slate-900 font-mono">{numeroFactura(invoice)}</h1>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 mt-1 break-words">
               <Link to={`/pacientes/${invoice.patient_id}`} className="text-brand-600 hover:text-brand-700">{invoice.paciente_nombre}</Link>
               {invoice.cedula && <> · {invoice.cedula}</>} · {invoice.fecha}
             </p>
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap w-full sm:w-auto sm:justify-end">
             {!isAnulada && balance > 0 && (
-              <button onClick={() => setShowPayForm(!showPayForm)} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium shadow-sm">
+              <button onClick={() => setShowPayForm(!showPayForm)} className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium shadow-sm">
                 <Plus size={14} /> Registrar pago
               </button>
             )}
-            <Link to={`/print/factura/${id}`} target="_blank" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium">
+            <Link to={`/print/factura/${id}`} target="_blank" className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium">
               <Printer size={14} /> Imprimir factura
             </Link>
             {canDelete && !isAnulada && (
@@ -128,6 +142,7 @@ export default function InvoiceDetail() {
         impuesto={invoice.impuesto}
         total={invoice.total}
         extraRows={balanceRows}
+        mobileExtraRows={mobileBalanceRows}
       />
 
       <NotesCard notas={invoice.notas} />

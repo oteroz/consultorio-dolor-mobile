@@ -64,7 +64,35 @@ export default function UsuariosTab({ isAdmin }) {
       )}
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-card">
-        <table className="w-full">
+        <div className="md:hidden divide-y divide-slate-100">
+          {loading && <div className="p-6 text-center text-sm text-slate-500">Cargando usuarios...</div>}
+          {!loading && users.length === 0 && (
+            <div className="p-6 text-center text-sm text-slate-500">No hay perfiles registrados todavia.</div>
+          )}
+          {users.map(u => (
+            <div key={u.id} className="p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="font-medium text-slate-900 break-words">{u.email || u.username}</div>
+                  {u.full_name && <div className="text-sm text-slate-500 mt-0.5 truncate">{u.full_name}</div>}
+                </div>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium capitalize shrink-0 ${roleStyles[u.role] || 'bg-slate-100 text-slate-700'}`}>
+                  {u.role}
+                </span>
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-3">
+                <span className={`text-xs px-2 py-0.5 rounded-full ${u.active ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}`}>
+                  {u.active ? 'Activo' : 'Inactivo'}
+                </span>
+                <button onClick={() => toggle(u)} className="px-3 py-2 rounded-lg bg-slate-100 text-sm text-brand-700 font-medium">
+                  {u.active ? 'Desactivar' : 'Activar'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <table className="hidden md:table w-full">
           <thead className="bg-slate-50 text-xs uppercase text-slate-600 tracking-wider">
             <tr>
               <th className="text-left px-5 py-3 font-semibold">Usuario</th>

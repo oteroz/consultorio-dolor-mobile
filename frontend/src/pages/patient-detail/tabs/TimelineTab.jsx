@@ -133,7 +133,7 @@ export default function HistoriaTab({ patientId }) {
         {groups.map(g => (
           <div key={g.key}>
             <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">{g.label}</h3>
-            <ol className="relative border-l-2 border-slate-200 ml-3 space-y-4">
+            <ol className="relative border-l-2 border-slate-200 ml-2 sm:ml-3 space-y-4">
               {g.events.map((e, idx) => <TimelineEvent key={`${g.key}-${idx}`} event={e} />)}
             </ol>
           </div>
@@ -151,8 +151,8 @@ function TimelineEvent({ event }) {
   const timeStr = event.type === 'cita' && event.data.hora ? event.data.hora : null;
 
   return (
-    <li className="ml-6 relative">
-      <span className={`absolute -left-[34px] top-2 flex items-center justify-center w-7 h-7 rounded-full ring-4 ring-slate-50 ${cfg.dot}`}>
+    <li className="ml-5 sm:ml-6 relative">
+      <span className={`absolute -left-[30px] sm:-left-[34px] top-2 flex items-center justify-center w-7 h-7 rounded-full ring-4 ring-slate-50 ${cfg.dot}`}>
         <Icon size={13} className="text-white" strokeWidth={2.5} />
       </span>
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-card">

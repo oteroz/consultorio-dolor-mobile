@@ -55,14 +55,14 @@ export default function MedicacionTab({ patientId, canWrite }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-start gap-3 mb-4 flex-col sm:flex-row sm:items-center">
         <h2 className="text-lg font-semibold text-slate-900">Prescripcion y titulacion</h2>
-        <div className="flex gap-2 flex-wrap justify-end">
+        <div className="flex gap-2 flex-wrap justify-end w-full sm:w-auto">
           {meds.length > 0 && (
             <Link
               to={`/print/prescripcion/${printIds.join(',')}`}
               target="_blank"
-              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium ${
+              className={`inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium ${
                 printIds.length ? 'bg-slate-900 hover:bg-slate-800 text-white' : 'bg-slate-100 text-slate-400 pointer-events-none'
               }`}
             >
@@ -70,7 +70,7 @@ export default function MedicacionTab({ patientId, canWrite }) {
             </Link>
           )}
           {canWrite && (
-            <button onClick={() => setShowForm(true)} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">
+            <button onClick={() => setShowForm(true)} className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">
               <Plus size={16} /> Nueva prescripcion
             </button>
           )}
@@ -91,8 +91,8 @@ export default function MedicacionTab({ patientId, canWrite }) {
           <Field label="Via"><input className={inputCls} value={form.via_inicial} onChange={e=>setForm({...form, via_inicial:e.target.value})} placeholder="ej: oral" /></Field>
           <Field full label="Notas"><textarea rows={2} className={inputCls} value={form.notas} onChange={e=>setForm({...form, notas:e.target.value})} /></Field>
           <div className="md:col-span-2 flex gap-2 pt-2">
-            <button type="submit" className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
-            <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
+            <button type="submit" className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
+            <button type="button" onClick={() => setShowForm(false)} className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
           </div>
         </form>
       )}
@@ -103,7 +103,7 @@ export default function MedicacionTab({ patientId, canWrite }) {
         <ul className="space-y-3">
           {meds.map(m => (
             <li key={m.id} className={`bg-white border rounded-xl p-4 shadow-card ${m.activo ? 'border-slate-200' : 'border-slate-200 opacity-60'}`}>
-              <div className="flex justify-between items-start gap-3">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-3">
                 <label className="pt-1 shrink-0">
                   <input
                     type="checkbox"
@@ -133,7 +133,7 @@ export default function MedicacionTab({ patientId, canWrite }) {
                   )}
                   {m.notas && <div className="text-sm text-slate-500 mt-1">{m.notas}</div>}
                 </div>
-                <div className="flex gap-3 text-sm shrink-0">
+                <div className="flex gap-3 text-sm shrink-0 flex-wrap w-full sm:w-auto">
                   <Link to={`/print/prescripcion/${m.id}`} target="_blank" className="inline-flex items-center gap-1 text-brand-600 hover:text-brand-700 font-medium">
                     <Printer size={14} /> Receta
                   </Link>
@@ -149,14 +149,14 @@ export default function MedicacionTab({ patientId, canWrite }) {
               </div>
 
               {addTitrTo === m.id && (
-                <form onSubmit={addTitration} className="mt-3 p-3 bg-slate-50 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-2 animate-fade-in">
+                <form onSubmit={addTitration} className="mt-3 p-3 bg-slate-50 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 animate-fade-in">
                   <input required placeholder="Nueva dosis" className={inputCls} value={titrForm.dosis} onChange={e=>setTitrForm({...titrForm, dosis:e.target.value})} />
                   <input placeholder="Frecuencia" className={inputCls} value={titrForm.frecuencia} onChange={e=>setTitrForm({...titrForm, frecuencia:e.target.value})} />
                   <input placeholder="Via" className={inputCls} value={titrForm.via} onChange={e=>setTitrForm({...titrForm, via:e.target.value})} />
                   <input placeholder="Motivo de cambio" className={inputCls} value={titrForm.motivo_cambio} onChange={e=>setTitrForm({...titrForm, motivo_cambio:e.target.value})} />
-                  <div className="col-span-2 md:col-span-4 flex gap-2">
-                    <button type="submit" className="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm">Agregar</button>
-                    <button type="button" onClick={() => setAddTitrTo(null)} className="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-sm">Cancelar</button>
+                  <div className="sm:col-span-2 md:col-span-4 flex gap-2">
+                    <button type="submit" className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm">Agregar</button>
+                    <button type="button" onClick={() => setAddTitrTo(null)} className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-sm">Cancelar</button>
                   </div>
                 </form>
               )}

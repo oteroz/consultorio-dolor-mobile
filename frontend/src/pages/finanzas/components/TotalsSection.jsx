@@ -9,8 +9,8 @@ export default function TotalsSection({ subtotal, impuesto, onImpuestoChange, to
         <span className="text-slate-600">Subtotal</span>
         <span className="tabular-nums font-medium text-slate-900">{fmt(subtotal)}</span>
       </div>
-      <div className="flex justify-between items-center py-2 text-sm">
-        <label className="text-slate-600 flex items-center gap-2">
+      <div className="flex justify-between items-start gap-3 py-2 text-sm">
+        <label className="text-slate-600 flex flex-col sm:flex-row sm:items-center gap-2 min-w-0">
           Impuesto / ITBIS
           <input
             type="number" min="0" step="0.01"
@@ -19,11 +19,11 @@ export default function TotalsSection({ subtotal, impuesto, onImpuestoChange, to
             className="w-28 rounded-lg border border-slate-300 px-2 py-1 text-right tabular-nums text-sm"
           />
         </label>
-        <span className="tabular-nums font-medium text-slate-900">{fmt(imp)}</span>
+        <span className="tabular-nums font-medium text-slate-900 pt-1 sm:pt-0">{fmt(imp)}</span>
       </div>
-      <div className="flex justify-between items-center py-3 border-t border-slate-200 text-lg">
+      <div className="flex justify-between items-center gap-3 py-3 border-t border-slate-200 text-lg">
         <span className="font-semibold text-slate-900">{totalLabel}</span>
-        <span className="tabular-nums font-semibold text-brand-700">{fmt(total)}</span>
+        <span className="tabular-nums font-semibold text-brand-700 text-right">{fmt(total)}</span>
       </div>
     </div>
   );

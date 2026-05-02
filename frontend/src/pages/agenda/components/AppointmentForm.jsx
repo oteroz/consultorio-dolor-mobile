@@ -40,10 +40,9 @@ export default function AppointmentForm({ form, setForm, patients, onSubmit, onC
         <input value={form.motivo} onChange={e => setForm({ ...form, motivo: e.target.value })} className={inputCls} />
       </Field>
       <div className="md:col-span-2 flex gap-2">
-        <button type="submit" className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
-        <button type="button" onClick={onCancel} className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
+        <button type="submit" className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
+        <button type="button" onClick={onCancel} className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
       </div>
     </form>
   );
 }
-

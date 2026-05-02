@@ -175,7 +175,7 @@ export default function BodyMap({ value, onChange, readOnly }) {
     <div>
       {!readOnly && (
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <div className="flex gap-1.5 p-1.5 bg-slate-50 rounded-xl border border-slate-200">
+          <div className="flex gap-1.5 p-1.5 bg-slate-50 rounded-xl border border-slate-200 max-sm:w-full max-sm:justify-between">
             {COLORS.map(c => (
               <button
                 key={c}
@@ -187,42 +187,41 @@ export default function BodyMap({ value, onChange, readOnly }) {
               />
             ))}
           </div>
-          <div className="flex gap-0.5 p-1 bg-slate-50 rounded-xl border border-slate-200">
+          <div className="flex gap-0.5 p-1 bg-slate-50 rounded-xl border border-slate-200 max-sm:w-full">
             <button
               type="button"
               onClick={() => setTool('draw')}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium ${tool === 'draw' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              className={`inline-flex flex-1 justify-center items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium ${tool === 'draw' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
             >
               <Brush size={14} /> Dibujar
             </button>
             <button
               type="button"
               onClick={() => setTool('text')}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium ${tool === 'text' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              className={`inline-flex flex-1 justify-center items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium ${tool === 'text' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
             >
               <Type size={14} /> Texto
             </button>
           </div>
-          <div className="flex gap-1 ml-auto">
-            <button type="button" onClick={() => clearView('frente')} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs">
+          <div className="flex gap-1 ml-auto max-sm:ml-0 max-sm:w-full">
+            <button type="button" onClick={() => clearView('frente')} className="inline-flex flex-1 justify-center items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs">
               <Eraser size={12} /> Frente
             </button>
-            <button type="button" onClick={() => clearView('espalda')} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs">
+            <button type="button" onClick={() => clearView('espalda')} className="inline-flex flex-1 justify-center items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-xs">
               <Eraser size={12} /> Espalda
             </button>
           </div>
         </div>
       )}
 
-      <div className="flex gap-6 justify-center flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 justify-items-center">
         {VIEWS.map(v => (
           <div key={v.key} className="text-center">
             <div className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-2">{v.label}</div>
             <canvas
               ref={refs[v.key]}
               width={W} height={H}
-              className={`border border-slate-200 rounded-xl touch-none bg-white shadow-card ${readOnly ? 'cursor-default' : 'cursor-crosshair'}`}
-              style={{ width: W, height: H }}
+              className={`border border-slate-200 rounded-xl touch-none bg-white shadow-card w-full max-w-[200px] h-auto ${readOnly ? 'cursor-default' : 'cursor-crosshair'}`}
               onPointerDown={e => pointerDown(v.key, e)}
               onPointerMove={e => pointerMove(v.key, e)}
               onPointerUp={() => pointerUp(v.key)}

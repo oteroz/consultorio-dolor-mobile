@@ -21,12 +21,16 @@ export default function AgendaTab({ patient }) {
       ) : (
         <ul className="space-y-2">
           {appts.map(a => (
-            <li key={a.id} className="bg-white border border-slate-200 rounded-xl p-3 text-sm flex justify-between items-center shadow-card">
-              <div>
-                <span className="font-medium text-slate-900">{a.fecha}</span>
-                {a.hora && <span className="text-slate-500 ml-2 font-mono">{a.hora}</span>}
-                <span className="ml-3 text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{a.tipo === 'walkin' ? 'Sin cita' : a.tipo === 'followup' ? 'Seguimiento' : 'Cita'}</span>
-                {a.motivo && <span className="text-slate-500 ml-2">· {a.motivo}</span>}
+            <li key={a.id} className="bg-white border border-slate-200 rounded-xl p-3 text-sm flex justify-between items-start gap-3 shadow-card">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium text-slate-900">{a.fecha}</span>
+                  {a.hora && <span className="text-slate-500 font-mono">{a.hora}</span>}
+                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">
+                    {a.tipo === 'walkin' ? 'Sin cita' : a.tipo === 'followup' ? 'Seguimiento' : 'Cita'}
+                  </span>
+                </div>
+                {a.motivo && <div className="text-slate-500 mt-1 break-words">{a.motivo}</div>}
               </div>
               <StatusBadge estado={a.estado} />
             </li>

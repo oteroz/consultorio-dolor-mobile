@@ -67,10 +67,10 @@ export default function ProcedimientosTab({ patientId, canWrite }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-start gap-3 mb-4 flex-col sm:flex-row sm:items-center">
         <h2 className="text-lg font-semibold text-slate-900">Procedimientos intervencionistas</h2>
         {canWrite && (
-          <button onClick={openForm} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">
+          <button onClick={openForm} className="inline-flex w-full sm:w-auto justify-center items-center gap-2 px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">
             <Plus size={16} /> Nuevo procedimiento
           </button>
         )}
@@ -113,8 +113,8 @@ export default function ProcedimientosTab({ patientId, canWrite }) {
           </div>
           <Field full label="Notas"><textarea rows={2} className={inputCls} value={form.notas} onChange={e=>setForm({...form, notas:e.target.value})} /></Field>
           <div className="md:col-span-2 flex gap-2 pt-2">
-            <button type="submit" className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
-            <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
+            <button type="submit" className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium">Guardar</button>
+            <button type="button" onClick={() => setShowForm(false)} className="flex-1 sm:flex-none px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">Cancelar</button>
           </div>
         </form>
       )}
@@ -162,7 +162,7 @@ export default function ProcedimientosTab({ patientId, canWrite }) {
                     )}
                     {p.notas && <div className="text-sm text-slate-500 mt-1 whitespace-pre-wrap">{p.notas}</div>}
                   </div>
-                  <div className="flex flex-col items-end gap-2 shrink-0">
+                  <div className="flex sm:flex-col items-start sm:items-end gap-2 shrink-0 w-full sm:w-auto">
                     {p.followup_days > 0 && (
                       <span className="text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-full whitespace-nowrap">
                         seguimiento {p.followup_days}d
@@ -180,7 +180,7 @@ export default function ProcedimientosTab({ patientId, canWrite }) {
                 </div>
 
                 {evaPostFor === p.id && (
-                  <form onSubmit={e => saveEvaPost(e, p.id)} className="mt-3 p-3 bg-slate-50 rounded-lg flex gap-2 items-end animate-fade-in">
+                  <form onSubmit={e => saveEvaPost(e, p.id)} className="mt-3 p-3 bg-slate-50 rounded-lg flex flex-col sm:flex-row gap-2 sm:items-end animate-fade-in">
                     <label className="flex-1">
                       <span className="text-xs font-medium text-slate-600 mb-1 block">EVA post-procedimiento (0-10)</span>
                       <input type="number" min="0" max="10" required autoFocus className={inputCls} value={evaPostValue} onChange={e=>setEvaPostValue(e.target.value)} />

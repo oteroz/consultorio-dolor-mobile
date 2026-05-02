@@ -56,12 +56,12 @@ export default function ConsultaForm() {
           </div>
         )}
 
-        <div className="flex gap-2 sticky bottom-4">
-          <button type="submit" disabled={saving} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-sm disabled:opacity-50">
+        <div className="flex gap-2 sticky bottom-4 bg-slate-50/90 backdrop-blur rounded-lg p-2 max-sm:bottom-[calc(env(safe-area-inset-bottom)+5.5rem)]">
+          <button type="submit" disabled={saving} className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-sm disabled:opacity-50">
             {saving && <Loader2 size={16} className="animate-spin" />}
             {saving ? 'Guardando...' : (isEdit ? 'Guardar cambios' : 'Guardar consulta')}
           </button>
-          <Link to={backTo} className="px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 font-medium">
+          <Link to={backTo} className="flex-1 sm:flex-none text-center px-5 py-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 font-medium">
             Cancelar
           </Link>
         </div>

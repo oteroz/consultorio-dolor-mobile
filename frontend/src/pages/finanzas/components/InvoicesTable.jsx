@@ -24,7 +24,7 @@ export default function InvoicesTable({ invoices }) {
                   </div>
                   <InvoiceEstadoBadge estado={i.estado} />
                 </div>
-                <div className="mt-3 grid grid-cols-3 gap-2 text-sm">
+                <div className="mt-3 grid grid-cols-1 min-[380px]:grid-cols-3 gap-2 text-sm">
                   <div>
                     <div className="text-xs text-slate-400">Total</div>
                     <div className="tabular-nums text-slate-700">{fmt(i.total)}</div>

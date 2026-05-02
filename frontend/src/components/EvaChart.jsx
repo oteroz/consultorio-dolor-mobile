@@ -120,7 +120,7 @@ export default function EvaChart({ consultations = [], procedures = [] }) {
         ))}
       </svg>
 
-      <div className="flex gap-8 mt-4 pt-4 border-t border-slate-100 text-sm flex-wrap">
+      <div className="grid grid-cols-2 sm:flex gap-4 sm:gap-8 mt-4 pt-4 border-t border-slate-100 text-sm">
         <Stat label="Última EVA" value={summary.latest} valueClass={latestColor} />
         <Stat label="Promedio" value={summary.avg} valueClass="text-slate-700" />
         {summary.count > 1 && (
@@ -131,7 +131,7 @@ export default function EvaChart({ consultations = [], procedures = [] }) {
           />
         )}
         {procPoints.length > 0 && (
-          <div className="flex items-center gap-2 ml-auto text-xs text-slate-500">
+          <div className="flex items-center gap-2 sm:ml-auto text-xs text-slate-500 col-span-2">
             <span className="w-3 h-3 rounded-full bg-violet-600"></span>
             Procedimientos ({procPoints.length})
           </div>

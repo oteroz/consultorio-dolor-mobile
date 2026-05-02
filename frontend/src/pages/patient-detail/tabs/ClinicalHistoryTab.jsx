@@ -44,13 +44,13 @@ export default function HistoriaClinicaTab({ patientId, canWrite }) {
           <h2 className="text-lg font-semibold text-slate-900">Historia Clínica — Unidad del Dolor</h2>
           <p className="text-sm text-slate-500 mt-0.5">Registrada el {historia.fecha}</p>
         </div>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap w-full sm:w-auto">
           {canWrite && (
-            <Link to={`/pacientes/${patientId}/historia-clinica`} className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">
+            <Link to={`/pacientes/${patientId}/historia-clinica`} className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-sm font-medium">
               <Pencil size={14} /> Editar
             </Link>
           )}
-          <Link to={`/print/historia-clinica/${patientId}`} target="_blank" className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium">
+          <Link to={`/print/historia-clinica/${patientId}`} target="_blank" className="inline-flex flex-1 sm:flex-none justify-center items-center gap-2 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium">
             <Printer size={14} /> Imprimir
           </Link>
         </div>
@@ -201,7 +201,24 @@ function TablaDIView({ title, subtitle, filas, data }) {
     <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-card">
       <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{title}</h3>
       {subtitle && <p className="text-[11px] text-slate-500 mb-2">{subtitle}</p>}
-      <table className="w-full text-sm mt-2">
+      <div className="md:hidden mt-3 space-y-2">
+        {filas.map(([k, label]) => (
+          <div key={k} className="rounded-lg bg-slate-50 border border-slate-100 p-3">
+            <div className="text-sm font-medium text-slate-700">{label}</div>
+            <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <div className="text-xs text-slate-500">Derecha</div>
+                <div className="tabular-nums font-medium">{data[k]?.d !== '' && data[k]?.d !== undefined ? data[k].d : '-'}</div>
+              </div>
+              <div>
+                <div className="text-xs text-slate-500">Izquierda</div>
+                <div className="tabular-nums font-medium">{data[k]?.i !== '' && data[k]?.i !== undefined ? data[k].i : '-'}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <table className="hidden md:table w-full text-sm mt-2">
         <thead>
           <tr className="text-xs uppercase text-slate-500 tracking-wider border-b border-slate-200">
             <th className="text-left py-2 font-semibold">Zona / Reflejo</th>

@@ -5,9 +5,9 @@ import { inputCls } from './FinanzasShared.jsx';
 export default function LineItemsSection({ title, items, onUpdate, onAdd, onRemove, descripcionPlaceholder }) {
   return (
     <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-card">
-      <div className="flex justify-between items-center mb-3">
+      <div className="flex justify-between items-start gap-3 mb-3 flex-col sm:flex-row sm:items-center">
         <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{title}</h3>
-        <button type="button" onClick={onAdd} className="inline-flex items-center gap-1 text-sm text-brand-600 hover:text-brand-700 font-medium">
+        <button type="button" onClick={onAdd} className="inline-flex w-full sm:w-auto justify-center items-center gap-1 rounded-lg bg-brand-50 px-3 py-2 text-sm text-brand-700 hover:text-brand-800 font-medium">
           <Plus size={14} /> Agregar línea
         </button>
       </div>
@@ -22,7 +22,7 @@ export default function LineItemsSection({ title, items, onUpdate, onAdd, onRemo
                 className={inputCls}
               />
             </div>
-            <div className="col-span-3 md:col-span-2">
+            <div className="col-span-4 md:col-span-2">
               <input
                 type="number" min="1" step="1"
                 placeholder="Cant."
@@ -40,7 +40,7 @@ export default function LineItemsSection({ title, items, onUpdate, onAdd, onRemo
                 className={inputCls}
               />
             </div>
-            <div className="col-span-3 md:col-span-1 flex justify-end">
+            <div className="col-span-2 md:col-span-1 flex justify-end">
               <button
                 type="button"
                 onClick={() => onRemove(i)}

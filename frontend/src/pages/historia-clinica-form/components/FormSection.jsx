@@ -49,8 +49,37 @@ export function GridDI({ filas, data, setData, max }) {
     setData(d => ({ ...d, [k]: { ...d[k], [side]: v } }));
   }
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm">
+    <>
+      <div className="md:hidden space-y-2">
+        {filas.map(([k, label]) => (
+          <div key={k} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <div className="text-sm font-medium text-slate-700 mb-2">{label}</div>
+            <div className="grid grid-cols-2 gap-2">
+              <label>
+                <span className="text-xs text-slate-500 mb-1 block">Derecha</span>
+                <input
+                  type="number" min="0" max={max}
+                  className="w-full rounded-lg border border-slate-300 px-2 py-2 text-center tabular-nums focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  value={data[k]?.d ?? ''}
+                  onChange={e => setCell(k, 'd', e.target.value)}
+                />
+              </label>
+              <label>
+                <span className="text-xs text-slate-500 mb-1 block">Izquierda</span>
+                <input
+                  type="number" min="0" max={max}
+                  className="w-full rounded-lg border border-slate-300 px-2 py-2 text-center tabular-nums focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  value={data[k]?.i ?? ''}
+                  onChange={e => setCell(k, 'i', e.target.value)}
+                />
+              </label>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block overflow-x-auto">
+        <table className="w-full text-sm">
         <thead>
           <tr className="text-xs uppercase text-slate-500 tracking-wider border-b border-slate-200">
             <th className="text-left py-2 font-semibold">Zona / Reflejo</th>
@@ -81,8 +110,8 @@ export function GridDI({ filas, data, setData, max }) {
             </tr>
           ))}
         </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+    </>
   );
 }
-
